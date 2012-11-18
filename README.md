@@ -1,0 +1,4 @@
+stump
+=====
+
+stump logging
