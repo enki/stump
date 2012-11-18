@@ -1,6 +1,6 @@
 {
   "name": "stump",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "stump logging",
   "main": "stump.js",
   "scripts": {
@@ -12,7 +12,12 @@
   },
   "dependencies": {
     "isnode": "*",
+    "q": "*",
     "enkicolor": "*"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
   },
   "keywords": [
     "stump",
