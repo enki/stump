@@ -36,21 +36,21 @@ if isnode
     util.inspect(arg, false, 6, true)
     # JSON.stringify(util.inspect(arg, false, 6, true))
 
-  decklog = fs.createWriteStream('logs/deck.log')
-  clientlog = fs.createWriteStream('logs/client.log')
-  serverlog = fs.createWriteStream('logs/server.log')
-  otherlog = fs.createWriteStream('logs/other.log')
-  for lfile in [decklog, clientlog, serverlog]
-    for abc in [1..10]
-      lfile.write( colors['red']('**********************************************************************\n') )
+  # decklog = fs.createWriteStream('logs/deck.log')
+  # clientlog = fs.createWriteStream('logs/client.log')
+  # serverlog = fs.createWriteStream('logs/server.log')
+  # otherlog = fs.createWriteStream('logs/other.log')
+  # for lfile in [decklog, clientlog, serverlog]
+  #   for abc in [1..10]
+  #     lfile.write( colors['red']('**********************************************************************\n') )
 else
   # colors = {}
   # for x in ['green', 'grey', 'cyan', 'yellow', 'red', 'bold', 'magenta', 'blue']
   #   colors[x] = (arg) ->
   #     return arg
-  decklog = null
-  clientlog = null
-  serverlog = null
+  # decklog = null
+  # clientlog = null
+  # serverlog = null
 
 
 defaults =
@@ -80,9 +80,9 @@ defaults =
     ]
   
   LOGCHANNELS: {
-    'default': ['console', decklog ]
-    'server': ['console', serverlog]
-    'client': ['console', clientlog]
+    'default': ['console' ]
+    # 'server': ['console' ]
+    # 'client': ['console' ]
   }
   logchan: 'default'
 
@@ -171,22 +171,22 @@ class StumpLog
         continue
       if chan == 'console'
         console.log.apply console, colormsg
-      else
-        colorline = colormsg.join(' ') + '\n'
-        plainline = colorline.replace(/\u001b\[..?m/g, '')
+      # else
+      #   colorline = colormsg.join(' ') + '\n'
+      #   plainline = colorline.replace(/\u001b\[..?m/g, '')
         
-        newstr = (x.replace(/./g, ' ') for x in plainline.split(/\n/g) ).join("\n")
+      #   newstr = (x.replace(/./g, ' ') for x in plainline.split(/\n/g) ).join("\n")
 
-        chan.write( glocount + ' ' + colorline )
-        if (chan == serverlog)
-          clientlog.write( glocount + ' ' + newstr )
-          decklog.write( glocount + ' ' + newstr )
-        else if (chan == clientlog)
-          serverlog.write( glocount + ' ' + newstr )
-          decklog.write( glocount + ' ' + newstr )
-        else if (chan == decklog)
-          serverlog.write( glocount + ' ' + newstr )
-          clientlog.write( glocount + ' ' + newstr )
+      #   chan.write( glocount + ' ' + colorline )
+      #   if (chan == serverlog)
+      #     clientlog.write( glocount + ' ' + newstr )
+      #     decklog.write( glocount + ' ' + newstr )
+      #   else if (chan == clientlog)
+      #     serverlog.write( glocount + ' ' + newstr )
+      #     decklog.write( glocount + ' ' + newstr )
+      #   else if (chan == decklog)
+      #     serverlog.write( glocount + ' ' + newstr )
+      #     clientlog.write( glocount + ' ' + newstr )
         # console.log.apply console, colormsg
       # else
       #   console.log 'SOMETHING ELSE', colormsg
