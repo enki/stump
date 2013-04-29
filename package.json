@@ -1,6 +1,6 @@
 {
   "name": "stump",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "stump logging",
   "main": "stump.js",
   "scripts": {
